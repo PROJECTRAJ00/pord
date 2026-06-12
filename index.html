@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diamond Solar | Rooftop Solar Installation & Solar Parts in Bikaner</title>
+  <meta name="description" content="Diamond Solar Bikaner — rooftop solar installation under PM Surya Ghar Yojana with subsidy up to ₹78,000, plus wholesale solar parts: structures, clamps, ACDB/DCDB.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+  <div id="site-top"></div>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-badge"><i class="fa-solid fa-shield-halved"></i> PM SURYA GHAR REGISTERED VENDOR</span>
+        <h2>Bijli Bill <span class="hl">Zero</span> Karein — Subsidy <span class="hl">₹78,000</span> Tak</h2>
+        <p class="lead">Diamond Solar installs high-performance grid-connected rooftop solar plants across Bikaner, and supplies wholesale solar hardware — structures, clamps, ACDB/DCDB — to installers and dealers.</p>
+        <div class="hero-btns">
+          <a href="#calculator" class="btn btn-gold"><i class="fa-solid fa-calculator"></i> Solar Calculator</a>
+          <a href="contact.html" class="btn btn-primary">Free Site Survey</a>
+          <a href="parts.html" class="btn btn-white">Parts &amp; Prices</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>500+</b><span>Installations</span></div>
+          <div class="hero-stat"><b>25 Yr</b><span>Panel Warranty</span></div>
+          <div class="hero-stat"><b>₹78K</b><span>Max Subsidy</span></div>
+        </div>
+      </div>
+      <div class="hero-side">
+        <h3><i class="fa-solid fa-indian-rupee-sign"></i> PM Surya Ghar Subsidy</h3>
+        <table class="subsidy-table">
+          <tr><th>System Capacity</th><th>Govt. Subsidy</th></tr>
+          <tr><td>1 kW</td><td><b>₹30,000</b></td></tr>
+          <tr><td>2 kW</td><td><b>₹60,000</b></td></tr>
+          <tr><td>3 kW &amp; above</td><td><b>₹78,000</b></td></tr>
+        </table>
+        <p class="note">* Subsidy as per PM Surya Ghar: Muft Bijli Yojana for residential consumers. Hum saari paperwork handle karte hain.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOLAR CALCULATOR ============ -->
+  <section id="calculator">
+    <div class="container">
+      <div class="sec-header">
+        <span class="eyebrow"><i class="fa-solid fa-calculator"></i> Free Solar Calculator</span>
+        <h2>Kitna Bachega? Abhi Calculate Karein</h2>
+        <p class="sub">Apna monthly bijli bill daalo — system size, subsidy, cost aur savings turant dekho.</p>
+      </div>
+      <div class="calc-wrap">
+        <div class="calc-box">
+          <h3><i class="fa-solid fa-sliders" style="color:var(--primary)"></i> Aapki Details</h3>
+          <div class="calc-field">
+            <label>Monthly Electricity Bill <output id="billOut">₹3,000</output></label>
+            <input type="range" id="billRange" min="500" max="25000" step="100" value="3000">
+          </div>
+          <div class="calc-field">
+            <label>Electricity Rate (₹/unit) <output id="rateOut">₹8.5</output></label>
+            <input type="range" id="rateRange" min="6" max="12" step="0.5" value="8.5">
+          </div>
+          <div class="calc-field">
+            <label>Available Roof Area (sq. ft.) <output id="roofOut">600</output></label>
+            <input type="range" id="roofRange" min="100" max="3000" step="50" value="600">
+          </div>
+          <p style="font-size:12.5px;color:var(--muted);line-height:1.6;"><i class="fa-solid fa-circle-info" style="color:var(--primary)"></i> 1 kW system ko approx 80–100 sq.ft. shadow-free roof chahiye aur Bikaner ki dhoop me ~130 units/month banata hai.</p>
+        </div>
+        <div class="calc-result">
+          <h3><i class="fa-solid fa-bolt"></i> Aapka Solar Plan</h3>
+          <div class="calc-rows">
+            <div class="calc-row"><span>Recommended System Size</span><b id="rSize">— kW</b></div>
+            <div class="calc-row"><span>Estimated System Cost</span><b id="rCost">—</b></div>
+            <div class="calc-row"><span>Govt. Subsidy (PM Surya Ghar)</span><b id="rSub">—</b></div>
+            <div class="calc-row big"><span>Net Cost After Subsidy</span><b id="rNet">—</b></div>
+            <div class="calc-row"><span>Monthly Saving</span><b id="rSave">—</b></div>
+            <div class="calc-row"><span>Payback Period</span><b id="rPay">—</b></div>
+            <div class="calc-row"><span>25-Year Total Saving</span><b id="rTotal">—</b></div>
+          </div>
+          <a href="#" id="calcWA" target="_blank" rel="noopener" class="btn btn-gold" style="margin-top:22px; justify-content:center;"><i class="fa-brands fa-whatsapp"></i> Ye Quote WhatsApp Par Bhejein</a>
+          <p class="calc-note">* Estimates approximate hain — final quote site survey ke baad. Cost ₹<span id="cpk"></span>/kW assumed; actual brand &amp; structure par depend karta hai.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOLUTIONS ============ -->
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="sec-header">
+        <span class="eyebrow"><i class="fa-solid fa-solar-panel"></i> Our Services</span>
+        <h2>What Solutions We Deliver</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card solution-card">
+          <div class="solution-img"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=500&q=80" alt="Rooftop Solar" loading="lazy"></div>
+          <h4>Residential Rooftop Solar</h4>
+          <p>Grid-connected systems under PM Surya Ghar Yojana — subsidy, net-metering aur paperwork sab hum handle karte hain. Bill zero tak.</p>
+        </div>
+        <div class="card solution-card">
+          <div class="solution-img"><img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=500&q=80" alt="Commercial Solar" loading="lazy"></div>
+          <h4>Commercial &amp; Industrial Plants</h4>
+          <p>Heavy-duty structural designs for factories, showrooms aur farms — high commercial tariff se chhutkara, fast payback.</p>
+        </div>
+        <div class="card solution-card">
+          <div class="solution-img"><img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=500&q=80" alt="Solar Parts" loading="lazy"></div>
+          <h4>Wholesale Parts Supply</h4>
+          <p>Mid/End clamps, GI &amp; aluminium structures, ACDB/DCDB panels, earthing kits — multiple companies, wholesale rates. <a href="parts.html" style="color:var(--primary);font-weight:700;">Price list →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY US ============ -->
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="sec-header">
+        <span class="eyebrow"><i class="fa-solid fa-medal"></i> Why Diamond Solar</span>
+        <h2>Bikaner Hum Par Bharosa Karta Hai</h2>
+      </div>
+      <div class="grid-4">
+        <div class="card feature-card"><div class="fi"><i class="fa-solid fa-file-signature"></i></div><h5>Subsidy Paperwork Free</h5><p>Application se net-meter tak — saari government formalities hum karte hain.</p></div>
+        <div class="card feature-card"><div class="fi"><i class="fa-solid fa-screwdriver-wrench"></i></div><h5>Apni Installation Team</h5><p>Trained in-house team, koi third-party contractor nahi. Quality guaranteed.</p></div>
+        <div class="card feature-card"><div class="fi"><i class="fa-solid fa-warehouse"></i></div><h5>Own Parts Warehouse</h5><p>Stock me structures, clamps, panels — installers ko wholesale rate par supply.</p></div>
+        <div class="card feature-card"><div class="fi"><i class="fa-solid fa-headset"></i></div><h5>Local After-Sales Service</h5><p>Bikaner me hi office — service call par turant response, 25 saal saath.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIAL PREVIEW (from Google Sheet) ============ -->
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="sec-header">
+        <span class="eyebrow"><i class="fa-solid fa-star"></i> Customer Reviews</span>
+        <h2>Khush Customers, Roshan Ghar</h2>
+      </div>
+    </div>
+    <div class="t-marquee"><div class="t-track" id="homeTestimonials"></div></div>
+    <div style="text-align:center; margin-top:26px;">
+      <a href="testimonials.html" class="btn btn-white">Saare Reviews Dekhein <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h3>Solar Lagwana Hai Ya Parts Chahiye?</h3>
+          <p>Free site survey book karein ya WhatsApp par turant baat karein.</p>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn-white"><i class="fa-solid fa-clipboard-check"></i> Book Survey</a>
+          <a href="https://wa.me/919310028202" target="_blank" rel="noopener" class="btn btn-gold"><i class="fa-brands fa-whatsapp"></i> WhatsApp Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js?v=9"></script>
+  <script src="js/sheets.js?v=9"></script>
+  <script src="js/layout.js?v=9"></script>
+  <script>
+    /* ---------- Calculator ---------- */
+    const C = SITE_CONFIG;
+    document.getElementById('cpk').textContent = C.COST_PER_KW.toLocaleString('en-IN');
+    const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+
+    function subsidyFor(kw) {
+      if (kw <= 0) return 0;
+      if (kw <= 1) return 30000;
+      if (kw <= 2) return Math.round(30000 * kw); // pro-rata between 1-2
+      return 78000;
+    }
+
+    function calc() {
+      const bill = +billRange.value, rate = +rateRange.value, roof = +roofRange.value;
+      billOut.textContent = inr(bill); rateOut.textContent = '₹' + rate; roofOut.textContent = roof;
+
+      const units = bill / rate;                       // units/month
+      let kw = units / C.UNITS_PER_KW_MONTH;           // needed size
+      const roofMaxKw = roof / 90;                     // ~90 sqft per kW
+      kw = Math.min(kw, roofMaxKw);
+      kw = Math.max(1, Math.round(kw * 2) / 2);        // round to 0.5, min 1kW
+
+      const cost = kw * C.COST_PER_KW;
+      const sub = subsidyFor(kw);
+      const net = Math.max(0, cost - sub);
+      const genUnits = kw * C.UNITS_PER_KW_MONTH;
+      const save = Math.min(genUnits * rate, bill);    // can't save more than bill
+      const payback = save > 0 ? net / (save * 12) : 0;
+      const total25 = save * 12 * 25 - net;
+
+      rSize.textContent = kw + ' kW';
+      rCost.textContent = inr(cost);
+      rSub.textContent = '− ' + inr(sub);
+      rNet.textContent = inr(net);
+      rSave.textContent = inr(save) + ' /month';
+      rPay.textContent = payback ? payback.toFixed(1) + ' years' : '—';
+      rTotal.textContent = inr(Math.max(0, total25));
+
+      const msg = `Hello ${C.FIRM_NAME}! Maine aapke website calculator se estimate nikala hai:\n\n⚡ System: *${kw} kW*\n💰 Approx Cost: ${inr(cost)}\n🏛️ Subsidy: ${inr(sub)}\n✅ Net Cost: *${inr(net)}*\n📉 Monthly Saving: ${inr(save)}\n\nMujhe free site survey book karna hai.`;
+      calcWA.href = `https://wa.me/${C.WHATSAPP}?text=${encodeURIComponent(msg)}`;
+    }
+    ['billRange', 'rateRange', 'roofRange'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+    calc();
+
+    /* Settings tab se rates override (client Sheet me badal sakta hai) */
+    (async () => {
+      const rows = await fetchSheet(C.TAB_SETTINGS);
+      if (!rows) return;
+      rows.forEach(r => {
+        const key = (r.setting || r.key || "").toLowerCase().replace(/\s/g, "");
+        const val = parseFloat(r.value);
+        if (!val) return;
+        if (key.includes("cost")) C.COST_PER_KW = val;
+        if (key.includes("tariff") || key.includes("rate")) { C.TARIFF_PER_UNIT = val; rateRange.value = val; }
+        if (key.includes("units")) C.UNITS_PER_KW_MONTH = val;
+      });
+      document.getElementById('cpk').textContent = C.COST_PER_KW.toLocaleString('en-IN');
+      calc();
+    })();
+
+    /* ---------- Home testimonials (Sheet -> marquee) ---------- */
+    (async () => {
+      const track = document.getElementById('homeTestimonials');
+      let rows = await fetchSheet(C.TAB_TESTIMONIALS);
+      if (!rows || !rows.length) {
+        rows = [
+          { name: "Ramesh Bishnoi", location: "Bikaner", rating: "5", feedback: "5kW system lagwaya — bill ₹4,500 se seedha zero! Subsidy ka pura paperwork Diamond Solar ne kiya." },
+          { name: "Suresh Tak", location: "Nokha", rating: "5", feedback: "Structure quality bahut badhiya, hot-dip galvanized. Installation team professional thi." },
+          { name: "Anita Sharma", location: "Bikaner", rating: "5", feedback: "ACDB/DCDB aur clamps wholesale rate par mile. Genuine material, time par delivery." }
+        ];
+      }
+      renderMarquee(track, rows);
+    })();
+
+    function renderMarquee(track, rows) {
+      const cards = rows.map(r => {
+        const stars = '★'.repeat(Math.min(5, parseInt(r.rating) || 5));
+        const initial = (r.name || 'C').charAt(0).toUpperCase();
+        const avatar = r.photo ? `<img src="${imageURL(r.photo)}" alt="">` : initial;
+        return `<div class="t-card">
+          <div class="t-stars">${stars}</div>
+          <p class="t-text">${escapeHTML(r.feedback || r.review || '')}</p>
+          <div class="t-person"><div class="t-avatar">${avatar}</div>
+          <div><b>${escapeHTML(r.name || '')}</b><span>${escapeHTML(r.location || '')}</span></div></div>
+        </div>`;
+      }).join('');
+      // Duplicate enough times to fill marquee
+      let repeated = cards;
+      let count = rows.length;
+      while (count < 10) { repeated += cards; count += rows.length; }
+      track.innerHTML = repeated;
+      track.style.setProperty('--t-speed', Math.max(30, rows.length * 9) + 's');
+    }
+  </script>
+</body>
+</html>
