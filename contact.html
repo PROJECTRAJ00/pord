@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Diamond Solar Bikaner</title>
+  <meta name="description" content="Contact Diamond Solar Bikaner — free site survey, solar quotes and parts enquiry. G.S. Road, Opposite Lunia Kothi, Bikaner.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+
+  <div id="site-top"></div>
+
+  <section>
+    <div class="container">
+      <div class="sec-header">
+        <span class="eyebrow"><i class="fa-solid fa-headset"></i> We're Here To Help</span>
+        <h2>Get in Touch</h2>
+        <p class="sub">Free site survey, solar installation quotes or wholesale parts inquiry.</p>
+      </div>
+      <div class="contact-grid">
+
+        <div class="info-box">
+          <h3>Contact Information</h3>
+          <div class="info-line"><i class="fa-solid fa-phone"></i><div><b>Phone / WhatsApp</b><br><a href="tel:+919310028202" style="color:var(--primary);text-decoration:none;font-weight:700;">+91 9310028202</a></div></div>
+          <div class="info-line"><i class="fa-solid fa-envelope"></i><div><b>Email</b><br><a href="mailto:diamondsolar551@gmail.com" style="color:var(--primary);text-decoration:none;font-weight:700;">diamondsolar551@gmail.com</a></div></div>
+          <div class="info-line"><i class="fa-solid fa-location-dot"></i><div><b>Office &amp; Warehouse</b><br>Near Haryana Hotel, G.S. Road,<br>Opposite Lunia Kothi, Bikaner, Rajasthan</div></div>
+          <div class="info-line"><i class="fa-regular fa-clock"></i><div><b>Timing</b><br>Mon–Sat: 9:30 AM – 7:00 PM</div></div>
+
+          <div class="map-frame">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3516.3121516089357!2d73.31346617631317!3d28.014960375999818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393f96c21fffffff%3A0x673966085a6cfec!2sLunia%20Kothi!5e0!3m2!1sen!2sin!4v1716461000000!5m2!1sen!2sin"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Diamond Solar location map"></iframe>
+          </div>
+        </div>
+
+        <form class="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdXfhK9ityyPXgor6gS-O6DXfuTfYKhG9mTspjHuA0wiKUYRg/formResponse" method="POST" target="hidden_iframe" onsubmit="showSuccessMessage()">
+          <h3>Send Inquiry</h3>
+          <input type="text" name="entry.2066591799" placeholder="Your Name" required />
+          <input type="text" name="entry.1714619365" placeholder="Address / Location" required />
+          <input type="tel" name="entry.920868568" placeholder="Mobile Number" required />
+          <input type="email" name="entry.1004007389" placeholder="Email Address" />
+          <textarea name="entry.463400825" rows="4" placeholder="Your requirement (system size, parts, quantity, etc.)" required></textarea>
+          <button type="submit" class="btn btn-primary" id="submitBtn" style="justify-content:center;">Submit Inquiry <i class="fa-solid fa-paper-plane"></i></button>
+          <div id="successText" style="display:none; color:var(--primary); font-weight:700; text-align:center; font-size:15px; background: rgba(13,138,67,0.08); padding: 14px; border-radius: 12px; border: 1px solid rgba(13,138,67,0.2);">
+            <i class="fa-solid fa-circle-check"></i> Thank you. Our team will contact you shortly.
+          </div>
+          <div style="text-align:center; font-size:13px; color:var(--muted); font-weight:600;">— or contact us directly —</div>
+          <a class="btn-order wa" href="https://wa.me/919310028202?text=Hello%20Diamond%20Solar%2C%20I%20would%20like%20to%20make%20an%20inquiry." target="_blank" rel="noopener" style="justify-content:center;"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" title="hidden"></iframe>
+  <script>
+    function showSuccessMessage() {
+      document.getElementById('submitBtn').style.display = 'none';
+      document.getElementById('successText').style.display = 'block';
+    }
+  </script>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js?v=10"></script>
+  <script src="js/sheets.js?v=10"></script>
+  <script src="js/layout.js?v=10"></script>
+</body>
+</html>
