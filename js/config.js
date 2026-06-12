@@ -8,7 +8,7 @@ const SITE_CONFIG = {
   // Apni Google Sheet kholo, URL me se ID copy karo:
   // https://docs.google.com/spreadsheets/d/  <<YE WALA HISSA>>  /edit
   // Sheet ko Share -> "Anyone with the link" -> Viewer karna ZAROORI hai.
-  SHEET_ID: "PASTE_YOUR_GOOGLE_SHEET_ID_HERE",
+  SHEET_ID: "1G0pzjUYAi10WKH-wt-ES0w3KXkhsgviBp7g21mUMDOM",
 
   // Sheet ke tab (neeche wale naam) — exactly yahi naam rakho tabs ke:
   TAB_PRODUCTS: "Products",
