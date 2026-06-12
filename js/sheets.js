@@ -13,7 +13,7 @@ async function fetchSheet(tabName) {
     const text = await res.text();
     // gviz response is wrapped: google.visualization.Query.setResponse({...});
     const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
-    const cols = json.table.cols.map(c => (c.label || c.id || "").trim().toLowerCase());
+    const cols = json.table.cols.map(c => (c.label || "").trim().toLowerCase());
     const rows = [];
     json.table.rows.forEach(r => {
       const obj = {};
