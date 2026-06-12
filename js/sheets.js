@@ -13,19 +13,46 @@ async function fetchSheet(tabName) {
     const text = await res.text();
     // gviz response is wrapped: google.visualization.Query.setResponse({...});
     const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
-    const cols = json.table.cols.map(c => (c.label || "").trim().toLowerCase());
+    const rawCols = json.table.cols;
+    // Try label first, then fall back to first row as header
+    let cols = rawCols.map(c => (c.label || "").trim().toLowerCase());
+    const hasLabels = cols.some(c => c !== "");
+    
     const rows = [];
-    json.table.rows.forEach(r => {
-      const obj = {};
-      let hasData = false;
-      r.c.forEach((cell, i) => {
-        let v = cell ? (cell.f !== undefined && cols[i] !== '' && typeof cell.v === 'object' ? cell.f : cell.v) : "";
-        if (v === null || v === undefined) v = "";
-        obj[cols[i]] = String(v).trim();
-        if (String(v).trim() !== "") hasData = true;
+    const allRows = json.table.rows || [];
+    
+    if (!hasLabels && allRows.length > 0) {
+      // First row contains headers
+      const headerRow = allRows[0];
+      cols = headerRow.c.map(cell => cell ? String(cell.v || "").trim().toLowerCase() : "");
+      // Skip first row (it's the header)
+      allRows.slice(1).forEach(r => {
+        const obj = {};
+        let hasData = false;
+        r.c.forEach((cell, i) => {
+          let v = cell ? (cell.f !== undefined ? cell.f : cell.v) : "";
+          if (v === null || v === undefined) v = "";
+          v = String(v).trim();
+          if (cols[i]) obj[cols[i]] = v;
+          if (v !== "") hasData = true;
+        });
+        if (hasData) rows.push(obj);
       });
-      if (hasData) rows.push(obj);
-    });
+    } else {
+      allRows.forEach(r => {
+        const obj = {};
+        let hasData = false;
+        r.c.forEach((cell, i) => {
+          let v = cell ? (cell.f !== undefined && typeof cell.v === 'object' ? cell.f : cell.v) : "";
+          if (v === null || v === undefined) v = "";
+          v = String(v).trim();
+          if (cols[i]) obj[cols[i]] = v;
+          if (v !== "") hasData = true;
+        });
+        if (hasData) rows.push(obj);
+      });
+    }
+    
     return rows;
   } catch (e) {
     console.error("Sheet fetch failed:", tabName, e);
