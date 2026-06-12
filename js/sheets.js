@@ -64,7 +64,19 @@ function parseMediaLink(link) {
 function mediaHTML(link, title) {
   const m = parseMediaLink(link);
   const t = escapeHTML(title || "");
-  if (m.type === "youtube" || m.type === "drive")
+
+  if (m.type === "youtube") {
+    // Thumbnail + play button overlay — click opens YouTube (no embed needed)
+    return `<a href="${escapeHTML(link)}" target="_blank" rel="noopener" style="display:block;position:relative;width:100%;height:100%;background:#000;">
+      <img src="${m.thumb}" alt="${t}" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0.85;">
+      <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:rgba(255,0,0,0.88);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+      <span style="position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,0.7);color:#fff;font-size:11px;padding:3px 8px;border-radius:6px;font-weight:700;">▶ YouTube pe dekhein</span>
+    </a>`;
+  }
+
+  if (m.type === "drive")
     return `<iframe src="${m.embed}" title="${t}" loading="lazy" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
   if (m.type === "video")
     return `<video controls preload="metadata" playsinline src="${m.src}"></video>`;
