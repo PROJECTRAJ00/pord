@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Kaise Update Karein — Guide</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:820px;margin:0 auto;padding:24px;line-height:1.75;color:#192434;background:#f4f8f6}
+h1{color:#086833;border-bottom:3px solid #0d8a43;padding-bottom:10px}
+h2{color:#081a2f;margin-top:36px;background:#e7f3ec;padding:10px 14px;border-radius:10px;border-left:5px solid #0d8a43}
+table{border-collapse:collapse;width:100%;margin:14px 0;background:#fff;font-size:14px}
+th,td{border:1px solid #cbd9cf;padding:9px 11px;text-align:left}
+th{background:#0d8a43;color:#fff}
+.imp{background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:12px 16px;margin:14px 0}
+.ok{background:#d8f3e3;border:1px solid #0d8a43;border-radius:10px;padding:12px 16px;margin:14px 0}
+code{background:#e7f0ea;padding:2px 7px;border-radius:5px;font-size:13px}
+li{margin:7px 0}
+</style>
+</head>
+<body>
+<h1>🌞 Diamond Solar Website — Update Guide</h1>
+<p><b>Ye guide client ke liye hai.</b> Website me naye products, videos, photos, testimonials aur news add karna sirf <b>Google Sheet me likhne jitna easy</b> hai. Koi coding nahi!</p>
+
+<h2>1️⃣ Ek Baar Ka Setup (sirf shuru me)</h2>
+<ol>
+<li>Google Sheets me ek <b>nayi spreadsheet</b> banao (sheets.google.com).</li>
+<li>Neeche <b>tabs</b> banao (bottom me + dabakar), naam <b>EXACTLY</b> yahi rakho:<br>
+<code>Products</code> | <code>Projects</code> | <code>PhotoGroups</code> | <code>Testimonials</code> | <code>Newsletter</code> | <code>Settings</code></li>
+<li>Har tab ki <b>pehli row</b> me neeche diye column ke naam likho (chhote letters me).</li>
+<li>Sheet me upar right <b>Share</b> button → <b>"Anyone with the link"</b> → <b>Viewer</b> → Done.</li>
+<li>Sheet ke URL me se ID copy karo:<br>
+<code>docs.google.com/spreadsheets/d/<b>👉YE-LAMBA-CODE👈</b>/edit</code></li>
+<li>Website folder me <code>js/config.js</code> file Notepad me kholo aur <code>PASTE_YOUR_GOOGLE_SHEET_ID_HERE</code> ki jagah wo ID paste karo. Save karo. Bas!</li>
+</ol>
+
+<h2>2️⃣ Tab: Products (Parts page ke liye)</h2>
+<table>
+<tr><th>name</th><th>category</th><th>company</th><th>price</th><th>unit</th><th>description</th><th>image</th></tr>
+<tr><td>Mid Clamp</td><td>Clamps</td><td>Tata</td><td>18</td><td>per piece</td><td>35mm aluminium clamp</td><td>(photo ka link)</td></tr>
+</table>
+<ul>
+<li><b>Naya product</b> = nayi row. Website par automatically card ban jayega WhatsApp order button ke saath.</li>
+<li><b>category</b> se filter buttons apne aap bante hain (Clamps, Structures, ACDB/DCDB...).</li>
+<li><b>image</b> me Google Drive ka photo link ya koi bhi image link daalo (khaali bhi chhod sakte ho).</li>
+<li>Price badalni ho to bas Sheet me number badal do — website par turant update.</li>
+</ul>
+
+<h2>3️⃣ Tab: Projects (sirf VIDEOS ke liye)</h2>
+<table>
+<tr><th>type</th><th>link</th><th>title</th><th>location</th><th>description</th></tr>
+<tr><td>video</td><td>YouTube ya Drive link</td><td>6kW Install</td><td>Bikaner</td><td>On-grid plant</td></tr>
+</table>
+<ul>
+<li>Ye tab ab sirf <b>videos</b> ke liye hai. <code>type</code> me <code>video</code> likho.</li>
+<li>Video link <b>YouTube ka ho ya Google Drive ka — dono chalega</b>, website khud samajh legi.</li>
+<li>3 video ho ya 30 — website apne aap space arrange kar legi. ✅</li>
+<li><b>Photos ab alag tab "PhotoGroups" me daalni hain</b> (neeche dekho). 👇</li>
+</ul>
+
+<h2>📸 Tab: PhotoGroups (project-wise photo albums)</h2>
+<p>Har project ka ek <b>album</b> banta hai. Bahar ek cover photo dikhti hai, click karne par us project ki <b>saari photos</b> khul jaati hain. Bahut saare projects ho to bhi page clean rehta hai.</p>
+<table>
+<tr><th>project_name</th><th>location</th><th>thumbnail</th><th>photo1</th><th>photo2</th><th>photo3</th><th>...photo10</th><th>description</th></tr>
+<tr><td>5kW Rooftop Install</td><td>Bikaner</td><td>(cover photo link)</td><td>(link)</td><td>(link)</td><td>(link)</td><td>...</td><td>On-grid residential system</td></tr>
+<tr><td>Commercial 10kW</td><td>Nokha</td><td>(cover photo link)</td><td>(link)</td><td>(link)</td><td></td><td></td><td>Industrial rooftop plant</td></tr>
+</table>
+<ul>
+<li><b>project_name</b> = album ka naam (jaise "5kW Rooftop Install").</li>
+<li><b>location</b> = kahan laga (Bikaner, Nokha...).</li>
+<li><b>thumbnail</b> = bahar dikhne wali <b>ek cover photo</b> ka Drive link. <b>(ZAROORI hai)</b></li>
+<li><b>photo1, photo2 ... photo10</b> = us project ki baaki photos. Jitni chahiye utni column bharo, baaki <b>khaali chhod do</b>. Ek project me max 10 photo + 1 cover.</li>
+<li><b>Naya project</b> = nayi row. Album apne aap ban jayega. 1 project ho ya 50 — page clean rahega. ✅</li>
+<li>Sabhi photos ka Drive link <b>"Anyone with the link → Viewer"</b> hona chahiye, warna nahi dikhegi.</li>
+<li>Website par kisi bhi photo par click karne se wo <b>fullscreen</b> khulti hai. Mobile par bhi sahi se chalti hai. 📱</li>
+</ul>
+
+<h2>4️⃣ Tab: Testimonials (chalti hui reviews)</h2>
+<table>
+<tr><th>name</th><th>location</th><th>rating</th><th>feedback</th><th>photo</th><th>video</th></tr>
+<tr><td>Ramesh ji</td><td>Bikaner</td><td>5</td><td>Bill zero ho gaya!</td><td>(optional)</td><td>(optional)</td></tr>
+</table>
+<ul>
+<li><b>rating</b>: 1 se 5 (stars dikhte hain).</li>
+<li>Reviews website par <b>automatic chalti hui</b> (running) dikhti hain — mouse rakhne par ruk jaati hain.</li>
+<li>Agar <b>video</b> column me link daaloge to video testimonial section bhi dikh jayega.</li>
+</ul>
+
+<h2>5️⃣ Tab: Newsletter (news/updates)</h2>
+<table>
+<tr><th>date</th><th>title</th><th>content</th><th>link</th></tr>
+<tr><td>12/06/2026</td><td>Subsidy Update</td><td>₹78,000 tak subsidy jaari hai...</td><td>(optional)</td></tr>
+</table>
+<ul>
+<li><b>date</b> format: <code>12/06/2026</code> (din/mahina/saal).</li>
+<li>Website par <b>sabse nayi news sabse upar</b> apne aap aayegi, "NEW" badge ke saath. Aapko order ki chinta nahi karni.</li>
+</ul>
+
+<h2>6️⃣ Tab: Settings (Calculator rates + Home page numbers)</h2>
+<table>
+<tr><th>setting</th><th>value</th></tr>
+<tr><td>cost_per_kw</td><td>60000</td></tr>
+<tr><td>tariff</td><td>8.5</td></tr>
+<tr><td>units_per_kw</td><td>130</td></tr>
+<tr><td>plants_installed</td><td>500</td></tr>
+<tr><td>total_capacity</td><td>2500</td></tr>
+<tr><td>happy_customers</td><td>450</td></tr>
+<tr><td>warranty_years</td><td>25</td></tr>
+<tr><td>max_subsidy</td><td>78000</td></tr>
+</table>
+<ul>
+<li><b>cost_per_kw</b> = 1 kW solar lagane ki cost (₹). Market rate badle to bas ye number badal do — calculator turant naye rate se hisaab lagayega.</li>
+<li><b>tariff</b> = bijli ka default rate ₹/unit. <b>units_per_kw</b> = 1 kW se mahine ki units (Bikaner ~130).</li>
+<li><b>plants_installed</b> = home page par "Installations" aur counter dono ka number. Naye plant lagein to ye number badha do.</li>
+<li><b>total_capacity</b> = total kW capacity (counter). <b>happy_customers</b> = customers count (counter).</li>
+<li><b>warranty_years</b> = home page par "Panel Warranty" (jaise 25). <b>max_subsidy</b> = "Max Subsidy" amount (jaise 78000 → ₹78K). Government scheme badle to yahin update karo.</li>
+<li>Home page ke saare numbers <b>animation ke saath</b> dikhte hain. Sirf Sheet me number badlo, website apne aap update kar legi. ✅</li>
+<li>Ye tab optional hai — nahi banaya to website default numbers use karegi.</li>
+</ul>
+
+<h2>📹 Google Drive Se Video/Photo Ka Link Kaise Lein</h2>
+<ol>
+<li>Drive me file upload karo.</li>
+<li>File par <b>right-click → Share → "Anyone with the link"</b> karo. <b>(YE SABSE ZAROORI STEP HAI!)</b></li>
+<li><b>Copy link</b> dabao aur Sheet me paste karo.</li>
+</ol>
+<div class="imp">⚠️ Agar "Anyone with the link" nahi kiya to video/photo website par <b>nahi dikhega</b> (sirf aapko dikhega). Koi cheez na dikhe to pehle yahi check karo.</div>
+<div class="imp">💡 Videos ke liye <b>YouTube best hai</b> (fast + unlimited views). Drive bhi chalega, lekin agar ek din me bahut log dekhein to Drive temporarily video block kar sakta hai.</div>
+
+<h2>❓ Common Problems</h2>
+<table>
+<tr><th>Problem</th><th>Solution</th></tr>
+<tr><td>Sheet me likha par website par nahi dikha</td><td>Page refresh karo (Ctrl+R / pull down). Sheet "Anyone with link" hai ya nahi check karo.</td></tr>
+<tr><td>Video black/blank dikh raha hai</td><td>Drive file ki sharing "Anyone with the link" karo.</td></tr>
+<tr><td>Photo nahi dikh rahi</td><td>Link Drive ka file link hona chahiye (folder ka nahi). Sharing "Anyone with the link" check karo.</td></tr>
+<tr><td>Album khulta nahi / photos nahi dikhti</td><td>PhotoGroups tab me <b>thumbnail</b> column zaroor bharo. Har photo ki sharing "Anyone with the link" honi chahiye.</td></tr>
+<tr><td>News galat order me</td><td>Date format check karo: 12/06/2026 jaisa.</td></tr>
+</table>
+
+<div class="ok">✅ <b>Yaad rakho:</b> Website ki files kabhi edit karne ki zaroorat nahi. Sab kuch Google Sheet se control hota hai. Sheet me likho → website par dikhega. Bas!</div>
+</body>
+</html>
