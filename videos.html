@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects & Gallery | Diamond Solar Bikaner</title>
+  <meta name="description" content="Installed solar project videos and photos by Diamond Solar Bikaner — residential and commercial rooftop installations.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="videos">
+
+  <div id="site-top"></div>
+
+  <!-- ============ PROJECT VIDEOS ============ -->
+  <section>
+    <div class="container">
+      <div class="sec-header">
+        <span class="eyebrow"><i class="fa-solid fa-video"></i> Live Project Videos</span>
+        <h2>Installed Projects</h2>
+      </div>
+      <div id="videoArea"><div class="loader"><i class="fa-solid fa-sun"></i>Loading videos…</div></div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECT PHOTO ALBUMS ============ -->
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="sec-header">
+        <span class="eyebrow"><i class="fa-solid fa-images"></i> Project Gallery</span>
+        <h2>Our Installations</h2>
+      </div>
+      <div id="albumArea"></div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox"><button class="lb-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button><img id="lbImg" alt=""></div>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js?v=18"></script>
+  <script src="js/sheets.js?v=18"></script>
+  <script src="js/layout.js?v=18"></script>
+  <script>
+    const C = SITE_CONFIG;
+
+    const SAMPLE = [
+      { type: "video", link: "https://youtu.be/Gatv7YuZoz4", title: "6.2kW Rooftop Solar Install", location: "Bikaner", description: "On-grid plant active and delivering daily output." }
+    ];
+
+    function isVideoRow(r) {
+      const t = (r.type || "").toLowerCase();
+      if (t) return t.startsWith("v"); // "video"
+      const m = parseMediaLink(r.link || r.url || "");
+      return m.type === "youtube" || m.type === "drive" || m.type === "video";
+    }
+
+    function renderVideos(rows) {
+      const videos = rows.filter(isVideoRow);
+      const vArea = document.getElementById('videoArea');
+      vArea.innerHTML = videos.length ? `<div class="project-grid">` + videos.map(r => `
+        <div class="card">
+          <div class="media-box">${mediaHTML(r.link || r.url, r.title)}</div>
+          <div class="pcard-body">
+            ${r.location ? `<span class="p-loc"><i class="fa-solid fa-location-dot"></i> ${escapeHTML(r.location)}</span>` : ''}
+            <h3>${escapeHTML(r.title || 'Solar Project')}</h3>
+            ${r.description ? `<p>${escapeHTML(r.description)}</p>` : ''}
+          </div>
+        </div>`).join('') + `</div>`
+        : `<div class="empty-note">Project videos will appear here once added to the Google Sheet "Projects" tab.</div>`;
+    }
+
+    // Collect photo links from a PhotoGroups row (thumbnail + photo1..photo10)
+    function collectPhotos(r) {
+      const photos = [];
+      for (let i = 1; i <= 10; i++) {
+        const v = (r['photo' + i] || '').trim();
+        if (v) photos.push(v);
+      }
+      // agar thumbnail alag hai to use bhi list me daalo (agar already nahi hai)
+      const thumb = (r.thumbnail || '').trim();
+      if (thumb && !photos.includes(thumb)) photos.unshift(thumb);
+      return photos;
+    }
+
+    function renderAlbums(groups) {
+      const area = document.getElementById('albumArea');
+      if (!groups || !groups.length) {
+        area.innerHTML = `<div class="empty-note">Project albums will appear here once added to the Google Sheet "PhotoGroups" tab.</div>`;
+        return;
+      }
+      area.innerHTML = `<div class="album-list">` + groups.map((g, idx) => {
+        const photos = collectPhotos(g);
+        if (!photos.length) return '';
+        const cover = imageURL(g.thumbnail || photos[0]);
+        const name = escapeHTML(g.project_name || g.name || 'Project');
+        const loc = g.location ? `<span class="album-loc"><i class="fa-solid fa-location-dot"></i> ${escapeHTML(g.location)}</span>` : '';
+        const grid = photos.map(p => {
+          const src = imageURL(p);
+          return `<div class="album-photo" data-full="${src}"><img src="${src}" alt="${name}" loading="lazy"></div>`;
+        }).join('');
+        return `<div class="album" data-idx="${idx}">
+          <button class="album-head" aria-expanded="false">
+            <div class="album-cover"><img src="${cover}" alt="${name}" loading="lazy"></div>
+            <div class="album-info">
+              <h3>${name}</h3>
+              ${loc}
+              ${g.description ? `<p>${escapeHTML(g.description)}</p>` : ''}
+              <span class="album-count"><i class="fa-solid fa-images"></i> ${photos.length} photos</span>
+            </div>
+            <span class="album-chevron"><i class="fa-solid fa-chevron-down"></i></span>
+          </button>
+          <div class="album-body"><div class="album-grid">${grid}</div></div>
+        </div>`;
+      }).join('') + `</div>`;
+
+      // Accordion toggle
+      area.querySelectorAll('.album-head').forEach(head => {
+        head.addEventListener('click', () => {
+          const album = head.closest('.album');
+          const isOpen = album.classList.contains('open');
+          // close all others (single open at a time — clean look)
+          area.querySelectorAll('.album.open').forEach(a => {
+            a.classList.remove('open');
+            a.querySelector('.album-head').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            album.classList.add('open');
+            head.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      // Lightbox on photo click
+      const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg');
+      area.querySelectorAll('.album-photo').forEach(ph => {
+        ph.addEventListener('click', e => {
+          e.stopPropagation();
+          lbImg.src = ph.dataset.full;
+          lb.classList.add('show');
+        });
+      });
+    }
+
+    (async () => {
+      // Videos from Projects tab
+      const projRows = await fetchSheet(C.TAB_PROJECTS);
+      renderVideos((projRows && projRows.length) ? projRows : SAMPLE);
+
+      // Photo albums from PhotoGroups tab
+      const groups = await fetchSheet(C.TAB_PHOTOGROUPS);
+      renderAlbums(groups);
+
+      // Lightbox close
+      const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg');
+      lb.addEventListener('click', e => { if (e.target !== lbImg) lb.classList.remove('show'); });
+    })();
+  </script>
+</body>
+</html>
