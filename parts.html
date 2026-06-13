@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar Parts & Prices | Diamond Solar Bikaner</title>
+  <meta name="description" content="Buy solar parts in Bikaner — mid clamps, end clamps, mounting structures, ACDB, DCDB of multiple companies at wholesale prices. Order on WhatsApp.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="parts">
+
+  <div id="site-top"></div>
+
+  <section>
+    <div class="container">
+      <div class="sec-header">
+        <span class="eyebrow"><i class="fa-solid fa-boxes-stacked"></i> Wholesale Parts Catalog</span>
+        <h2>Solar Parts &amp; Prices</h2>
+        <p class="sub">Mounting structures, clamps, ACDB/DCDB and electrical components from leading brands at competitive prices.</p>
+      </div>
+
+      <div class="filter-bar" id="filterBar"></div>
+      <div id="productArea">
+        <div class="loader"><i class="fa-solid fa-sun"></i>Loading products…</div>
+      </div>
+
+      <div class="cta-band" style="margin-top:50px;">
+        <div>
+          <h3>Bulk Orders &amp; Dealer Inquiries</h3>
+          <p>Special wholesale pricing available for installers and dealers.</p>
+        </div>
+        <a href="https://wa.me/919310028202?text=Hello%20Diamond%20Solar%2C%20I%20would%20like%20to%20inquire%20about%20wholesale%20pricing%20for%20bulk%20orders." target="_blank" rel="noopener" class="btn btn-gold"><i class="fa-brands fa-whatsapp"></i> Contact Sales</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ORDER FORM POPUP ============ -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-cart-shopping" style="color:var(--primary)"></i> Product Inquiry</h3>
+        <p id="modalProduct" style="color:var(--muted); font-size:14px; margin-top:6px;"></p>
+      </div>
+      <form class="contact-form" id="orderForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdXfhK9ityyPXgor6gS-O6DXfuTfYKhG9mTspjHuA0wiKUYRg/formResponse" method="POST" target="order_iframe" style="box-shadow:none; padding:0; border:0;">
+        <input type="text" name="entry.2066591799" placeholder="Your Name" required />
+        <input type="text" name="entry.1714619365" placeholder="Address / City" required />
+        <input type="tel" name="entry.920868568" placeholder="Mobile Number" required />
+        <input type="email" name="entry.1004007389" placeholder="Email (optional)" />
+        <textarea name="entry.463400825" id="orderMessage" rows="4" placeholder="Quantity and requirement details..." required></textarea>
+        <button type="submit" class="btn btn-primary" style="justify-content:center;">Submit Inquiry <i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+      <div id="orderSuccess" style="display:none; text-align:center; padding:30px 10px;">
+        <div style="font-size:50px; color:var(--primary); margin-bottom:15px;"><i class="fa-solid fa-circle-check"></i></div>
+        <h4 style="color:var(--secondary); margin-bottom:8px;">Thank You</h4>
+        <p style="color:var(--muted);">Your inquiry has been received. Our team will contact you shortly.</p>
+      </div>
+    </div>
+  </div>
+  <iframe name="order_iframe" id="order_iframe" style="display:none;" title="hidden"></iframe>
+
+  <div id="site-footer"></div>
+
+  <script src="js/config.js?v=19"></script>
+  <script src="js/sheets.js?v=19"></script>
+  <script src="js/layout.js?v=19"></script>
+  <script>
+    const C = SITE_CONFIG;
+    let allProducts = [];
+    let activeCat = "All";
+
+    const SAMPLE = [
+      { name: "Mid Clamp (Aluminium)", category: "Clamps", company: "Tata Power Solar", price: "18", unit: "per piece", description: "35mm aluminium mid clamp with SS bolt — for fitting between panels.", image: "" },
+      { name: "End Clamp (Aluminium)", category: "Clamps", company: "Tata Power Solar", price: "22", unit: "per piece", description: "35mm end clamp, anodized finish — for the last panel in a row.", image: "" },
+      { name: "GI Mounting Structure 3kW", category: "Structures", company: "Local Fabrication", price: "9500", unit: "per set", description: "Hot-dip galvanized heavy channel structure, 3kW set complete with hardware.", image: "" },
+      { name: "ACDB Single Phase 5kW", category: "ACDB/DCDB", company: "Havells", price: "2800", unit: "per box", description: "Factory pre-wired AC distribution box with MCB + SPD, IP65.", image: "" },
+      { name: "DCDB 1-in 1-out 1000V", category: "ACDB/DCDB", company: "Polycab", price: "2400", unit: "per box", description: "DC distribution box with fuse + SPD, 1000V DC rated, IP65 enclosure.", image: "" },
+      { name: "DC Cable 4 sq.mm (Red/Black)", category: "Cables", company: "Polycab", price: "38", unit: "per meter", description: "Solar grade DC cable, UV resistant, 1.1kV — per meter rate.", image: "" }
+    ];
+
+    function render() {
+      const area = document.getElementById('productArea');
+      const list = activeCat === "All" ? allProducts : allProducts.filter(p => (p.category || "Other") === activeCat);
+      if (!list.length) { area.innerHTML = `<div class="empty-note">No products in this category yet.</div>`; return; }
+      area.innerHTML = `<div class="product-grid">` + list.map(p => {
+        const img = p.image ? `<img src="${imageURL(p.image)}" alt="${escapeHTML(p.name)}" loading="lazy" onerror="this.outerHTML='<i class=\\'fa-solid fa-solar-panel ph\\'></i>'">` : `<i class="fa-solid fa-solar-panel ph"></i>`;
+        const price = p.price ? `₹${escapeHTML(p.price)} <small>${escapeHTML(p.unit || '')}</small>` : `<small>Price on request</small>`;
+        return `<div class="card product-card">
+          <div class="product-img">${img}</div>
+          <div class="product-body">
+            <div class="product-cat">${escapeHTML(p.category || 'Solar Part')}</div>
+            <h4>${escapeHTML(p.name)}</h4>
+            ${p.company ? `<div class="product-brand"><i class="fa-solid fa-industry" style="color:var(--accent)"></i> ${escapeHTML(p.company)}</div>` : ''}
+            <p class="product-desc">${escapeHTML(p.description || '')}</p>
+            <div class="product-price">${price}</div>
+            <div class="product-actions">
+              <a class="btn-order wa" href="${waOrderLink(p.name, p.price)}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</a>
+              ${C.ORDER_FORM_URL ? `<button class="btn-order form" data-product="${escapeHTML(p.name)}" data-price="${escapeHTML(p.price || '')}"><i class="fa-solid fa-file-lines"></i> Order via Form</button>` : ''}
+            </div>
+          </div>
+        </div>`;
+      }).join('') + `</div>`;
+    }
+
+    function buildFilters() {
+      const cats = ["All", ...new Set(allProducts.map(p => p.category || "Other"))];
+      document.getElementById('filterBar').innerHTML = cats.map(c =>
+        `<button class="chip ${c === activeCat ? 'active' : ''}" data-cat="${escapeHTML(c)}">${escapeHTML(c)}</button>`).join('');
+      document.querySelectorAll('.chip').forEach(ch => ch.addEventListener('click', () => {
+        activeCat = ch.dataset.cat;
+        buildFilters(); render();
+      }));
+    }
+
+    (async () => {
+      const rows = await fetchSheet(C.TAB_PRODUCTS);
+      allProducts = (rows && rows.length) ? rows : SAMPLE;
+      if (!rows) console.warn("Sheet not configured — showing sample products.");
+      buildFilters(); render();
+      attachOrderButtons();
+    })();
+
+    /* ---------- Order popup ---------- */
+    const modal = document.getElementById('orderModal');
+    const modalProduct = document.getElementById('modalProduct');
+    const orderMessage = document.getElementById('orderMessage');
+    const orderForm = document.getElementById('orderForm');
+    const orderSuccess = document.getElementById('orderSuccess');
+
+    function openOrder(name, price) {
+      modalProduct.innerHTML = `<i class="fa-solid fa-box"></i> <b>${escapeHTML(name)}</b>${price ? ` — ₹${escapeHTML(price)}` : ''}`;
+      orderMessage.value = `Product: ${name}${price ? `\nPrice: ₹${price}` : ''}\nQuantity: \nAdditional notes: `;
+      orderForm.style.display = 'grid';
+      orderSuccess.style.display = 'none';
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeOrder() {
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('modalClose').addEventListener('click', closeOrder);
+    modal.addEventListener('click', e => { if (e.target === modal) closeOrder(); });
+    orderForm.addEventListener('submit', () => {
+      setTimeout(() => {
+        orderForm.style.display = 'none';
+        orderSuccess.style.display = 'block';
+        orderForm.reset();
+        setTimeout(closeOrder, 2500);
+      }, 500);
+    });
+
+    function attachOrderButtons() {
+      document.querySelectorAll('.btn-order.form').forEach(btn => {
+        btn.addEventListener('click', () => openOrder(btn.dataset.product, btn.dataset.price));
+      });
+    }
+    // Re-attach after filter changes
+    const origRender = render;
+    render = function() { origRender(); attachOrderButtons(); };
+  </script>
+</body>
+</html>
